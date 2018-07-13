@@ -20,69 +20,60 @@ class Main extends React.Component {
   }
 
 	render() {
-		return (
-			<div className="main-container">
+		return <div className="main-container">
         <div className="container">
           {/* Navbar */}
-          <nav className="navbar navbar-default" role="navigation">
-            <div className="container-fluid">
-              <div className="navbar-header">
-                <button
-                  type="button"
-                  className="navbar-toggle"
-                  data-toggle="collapse"
-                  data-target=".navbar-ex1-collapse"
-                >
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
-                <a className="navbar-brand" to="/">Venue Finder</a>
+          <nav className="navbar" role="navigation">
+            <div className="logo">Venue Finder</div>
+            
+            <div className="navbar-links">
+            
+              <div className="nav-search">
+                <a onClick={() => this.toggleDisplay("Search")}>
+                  Search
+                </a>
               </div>
 
-              <div className="collapse navbar-collapse navbar-ex1-collapse">
-                <ul className="nav navbar-nav navbar-right">
-                  {/* Using <a> in place of <a> and "to" in place of "href" */}
-                  <li> <a onClick={() => this.toggleDisplay('Search')}>Search</a></li>
-                  <li> <a onClick={() => this.toggleDisplay('Saved')}>Saved Venues</a></li>
-                  <li><a href="https://github.com/KJax101/VenueFinder">Github Repo</a></li>
+              <div className="nav-saved">
+                <a onClick={() => this.toggleDisplay("Saved")}>
+                  Saved Venues
+                </a>
+              </div>
 
-                </ul>
+              <div className="nav-github">
+                <a href="https://github.com/KJax101/VenueFinder">
+                  Github Repo
+                </a>
               </div>
             </div>
+            
+
           </nav>
 
           {/* Jumbotron */}
           <div className="jumbotron">
-            <h2 className="text-center"><strong>(ReactJS) Venue Finder</strong></h2>
-            <h3 className="text-center">Search for and save any venues near you.</h3>
+            <h2 className="text-center">
+              <strong>(ReactJS) Venue Finder</strong>
+            </h2>
+            <h3 className="text-center">
+              Search for and save any venues near you.
+            </h3>
           </div>
 
 
-          {/* Here will deploy the sub components (Search or Saved */}
-          {/* These sub-components are getting passed as this.props.children */}
-          {/* {this.props.children} */} 
+          {this.state.display === "Search" && <Search className="search" />}
 
-
-          {
-            this.state.display === 'Search' && <Search className="search"/>
-          } 
-
-          {
-            this.state.display === 'Saved' && <Saved className="saved"/>
-          }
+          {this.state.display === "Saved" && <Saved className="saved" />}
 
           <footer>
             <hr />
             <p className="pull-right">
-              <i className="fa fa-github" aria-hidden="true"></i>
+              <i className="fa fa-github" aria-hidden="true" />
               Proudly built using React.js
             </p>
           </footer>
         </div>
-      </div>
-		)
+      </div>;
 
 	}
 }

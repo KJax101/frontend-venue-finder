@@ -119,27 +119,17 @@ export class Results extends React.Component {
 		// A helper method for rendering a container to hold all articles
 	renderContainer() {
 	    return (
-	      <div className="main-container">
-	        <div className="row">
-	          <div className="col-lg-12">
-	            <div className="panel panel-primary">
-	              <div className="panel-heading">
+	            <div className="results">
 	                <h1 className="panel-title">
 	                  <strong>
 	                    <i className="fa fa-list-alt"></i>
 	                    Results
 	                  </strong>
 	                </h1>
-	              </div>
-	              <div className="panel-body">
-	                <ul className="list-group">
+	                <ul className="result-list">
 	                  {this.renderArticles()}
 	                </ul>
-	              </div>
 	            </div>
-	          </div>
-	        </div>
-	      </div>
 	    );
 	}
 
