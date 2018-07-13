@@ -1,7 +1,8 @@
 // Include the axios package for performing HTTP requests (promise based alternative to request)
 import axios from "axios";
 
-// Geocoder and Google PLaces APIs
+const BASE_URL = `http://localhost:3333`
+// Geocoder and Google PLaces APIs 
 const geocodeAPI = "35e5548c618555b1a43eb4759d26b260";
 const googlePlacesAPI = "AIzaSyCYeih3P-UfimZCY3kIBSFwKugLXM-5VbY";
 
@@ -23,8 +24,9 @@ const helpers = {
 	findVenues: (keyword, lat, lng, radius) => {
 		console.log(keyword, lat, lng, radius);
 		const searchTerms = {keyword: keyword,lat: lat,lng: lng, radius}
-
-		return axios.post("/api/places", searchTerms)
+		// console.log(`The url is ${BASE_URL}/api/places`) 
+		// console.log(searchTerms)
+		return axios.post(BASE_URL + "/api/places", searchTerms)
 	      .then(function(results) {
 	        console.log("axios results in findVenues", results.data.results);
 	        if (!results.data.results[0]) {
@@ -42,48 +44,51 @@ const helpers = {
 
 		// const placeID = place.id;
 
-		return axios.post("/api/placeHourInfo", {placeReference: placeReference})
-	      .then(function(results) {
-	        console.log("axios results in getVenueHous", results.data.result.opening_hours.weekday_text);
-	      	if (!results.data.result.opening_hours.weekday_text[0]) {
-	        	return "Sorry there are no hours listed for this venue"
-	        } else {
-	        	return results.data.result.opening_hours.weekday_text;
-	        }
-	      });
+		return axios
+      .post(BASE_URL + "/api/placeHourInfo", {
+        placeReference: placeReference
+      })
+      .then(function(results) {
+        console.log(
+          "axios results in getVenueHous",
+          results.data.result.opening_hours.weekday_text
+        );
+        if (!results.data.result.opening_hours.weekday_text[0]) {
+          return "Sorry there are no hours listed for this venue";
+        } else {
+          return results.data.result.opening_hours.weekday_text;
+        }
+      });
 
 	},
 
 	// This will save new venues to the database
 	postSaved: function(name, icon, address, reference) {
 		var newVenue = { name: name, icon: icon, address: address, reference: reference };
-		return axios.post("/api/saved", newVenue)
-		  .then(function(response) {
-		    console.log("axios results", response.data._id);
-		    return response.data._id;
-		  });
+		return axios
+      .post(BASE_URL + "/api/saved", newVenue)
+      .then(function(response) {
+        console.log("axios results", response.data._id);
+        return response.data._id;
+      });
 	},
 
 	// This will return any saved articles from the database
 	getSaved: function() {
-		return axios.get("/api/saved")
-		  .then(function(results) {
-		    console.log("axios results", results);
-		    return results;
-		  });
+		return axios.get(BASE_URL + "/api/saved").then(function(results) {
+      console.log("axios results", results);
+      return results;
+    });
 	},
 
 	// This will remove saved articles from our database
 	deleteSaved: function(reference) {
-		return axios.delete("/api/saved", {
-		  params: {
-		    "reference": reference
-		  }
-		})
-		.then(function(results) {
-		  console.log("axios results", results);
-		  return results;
-		});
+		return axios
+      .delete(BASE_URL + "/api/saved", { params: { reference: reference } })
+      .then(function(results) {
+        console.log("axios results", results);
+        return results;
+      });
 	}
 };
 
