@@ -3,8 +3,12 @@
 } 
 
 body {
-  background: black; 
-  color: white;
+  /* background: black;    */
+  background: url("https://i.imgur.com/lSLxwCj.jpg"); 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  color: white; 
+
 }
 
 /* NAVBAR */
@@ -35,7 +39,7 @@ body {
 /* JUMBOTRON */ 
 
 .jumbotron {
-  background: rgba(25, 25, 25, 1); 
+  background: rgba(25, 25, 25, 0.5); 
   height: 400px; 
   padding-top: 60px;   
   width: 80%; 
@@ -60,6 +64,7 @@ footer {
 
 .query-container {
   border: 3px solid forestgreen;
+   background: rgba(25, 25, 25, 0.5); 
   border-radius: 10px;
   width: 80%; 
   margin: 0 auto; 
@@ -88,4 +93,5 @@ footer {
   margin: 0 auto; 
   margin-top: 10px;  
   text-align: center;
+  background: rgba(25, 25, 25, 0.5); 
 }
