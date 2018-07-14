@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import "../../setupTests"
 import {Results} from './Results';
 
@@ -27,13 +27,18 @@ let hour = "3pm - 4pm"
     });
 });
 
-// describe('<Results /> props', () => {
-//   it('testing expect', () => {
-//     expect(
-//     	shallow(<Results results=[]/>)
-//     	.find("")
-//     	.text()
-//     	.toEqual("")
-//     	)
-//     });
-// });
+describe("<Results /> callbacks", () => {
+	it("Should fire the fetchHours callback when the view hours button is clicked", () => {
+		const fetchHours = jest.fn(); 
+		const results = [{
+			name: 'lorem', 
+			vicinity: '10', 
+			icon: 'http://lorem.com'
+		}] 
+		const hours = ["8"]
+		const wrapper = mount(<Results fetchHours={fetchHours} results={results} hours={hours}/>);
+
+		wrapper.find("button.view-hours-btn").first().simulate("click");
+		expect(fetchHours).toHaveBeenCalled();
+	});
+});

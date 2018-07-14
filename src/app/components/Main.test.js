@@ -2,7 +2,6 @@ import React from "react"
 import {shallow} from "enzyme"
 import "../setupTests"
 import Main from "./Main"
-
 // smoke test for main component
 describe("Main", ()=>{
 	it("should render without crashing", ()=>{
