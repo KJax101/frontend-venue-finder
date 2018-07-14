@@ -1,97 +1,106 @@
 * {
   box-sizing: border-box;
-} 
+}
 
 body {
   /* background: black;    */
-  background: url("https://i.imgur.com/lSLxwCj.jpg"); 
-  background-repeat: no-repeat; 
+  background: url("https://wlcatalog.com/wp-content/uploads/2017/03/earth2.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
-  color: white; 
-
+  color: white;
 }
 
 /* NAVBAR */
 .container {
   /* border: 2px solid red; */
-} 
+}
 
 .navbar {
   /* border: 2px solid green;  */
-  display: grid;  
-  grid-template-columns: 1fr 4fr;   
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   background: #312312;
-  color: #eaeaea; 
-  height: 80px; 
-  padding-top: 30px; 
-  padding-bottom: 30px; 
-  padding-left: 20px; 
-  border: 3px solid wheat; 
-  border-radius: 10px; 
-
-} 
+  color: #eaeaea;
+  height: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  border: 3px solid wheat;
+  border-radius: 10px;
+}
 
 .navbar-links {
-  display: grid;  
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-} 
+}
 
-/* JUMBOTRON */ 
+.nav-github a {
+  text-decoration: none;
+}
+
+.nav-github a:visited {
+  color: greenyellow;
+}
+.nav-github a:link {
+  color: greenyellow;
+}
+
+/* JUMBOTRON */
 
 .jumbotron {
-  background: rgba(25, 25, 25, 0.5); 
-  height: 400px; 
-  padding-top: 60px;   
-  width: 80%; 
-  margin: 0 auto;   
+  background: rgba(25, 25, 25, 0.5);
+  height: 400px;
+  padding-top: 60px;
+  width: 80%;
+  margin: 0 auto;
   margin-top: 50px;
-  text-align: center; 
-  border: 3px solid brown; 
+  text-align: center;
+  border: 3px solid brown;
   border-radius: 10px;
-} 
+}
 
-/* FOOTER */ 
+/* FOOTER */
 
 footer {
   background: #312312;
-  color: gray;  
-  height: 100px; 
-  text-align: right; 
+  color: gray;
+  height: 100px;
+  text-align: right;
   padding: 30px;
-} 
+}
 
-/* Query ( FORM ) */ 
+/* Query ( FORM ) */
 
 .query-container {
   border: 3px solid forestgreen;
-   background: rgba(25, 25, 25, 0.5); 
+  background: rgba(25, 25, 25, 0.5);
   border-radius: 10px;
-  width: 80%; 
-  margin: 0 auto; 
-  margin-top: 10px; 
-  padding: 30px; 
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 30px;
   text-align: center;
-} 
+}
 
 .panel-body {
-  width: 50%; 
+  width: 50%;
   margin: 0 auto;
-} 
+}
 
 .submit-btn {
-  font-size: 1.3em; 
-  border-radius: 10px; 
+  font-size: 1.3em;
+  border-radius: 10px;
   margin-top: 10px;
 }
 
-/* RESULTS */ 
+/* RESULTS */
 
 .results {
-  border: 3px solid steelblue; 
-  border-radius: 10px; 
-  width: 80%; 
-  margin: 0 auto; 
-  margin-top: 10px;  
+  border: 3px solid steelblue;
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
   text-align: center;
-  background: rgba(25, 25, 25, 0.5); 
+  background: rgba(25, 25, 25, 0.5);
 }
