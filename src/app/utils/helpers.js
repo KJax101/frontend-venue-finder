@@ -1,50 +1,54 @@
 // Include the axios package for performing HTTP requests (promise based alternative to request)
 import axios from "axios";
 
-const BASE_URL = `http://localhost:3333`
-// Geocoder and Google PLaces APIs 
+// const BASE_URL = `http://localhost:3333`
+const BASE_URL = `https://fatidique-fromage-25645.herokuapp.com`;
+// Geocoder and Google PLaces APIs
 const geocodeAPI = "35e5548c618555b1a43eb4759d26b260";
 const googlePlacesAPI = "AIzaSyCYeih3P-UfimZCY3kIBSFwKugLXM-5VbY";
 
 // Helper Functions
 const helpers = {
-	getLongAndLat: (zipCode) => {
-		console.log(zipCode);
+  getLongAndLat: zipCode => {
+    console.log(zipCode);
 
-		// Figure out the geolocation
-	    const queryURL = "https://api.opencagedata.com/geocode/v1/json?query=" + zipCode + "&pretty=1&key=" + geocodeAPI;
+    // Figure out the geolocation
+    const queryURL =
+      "https://api.opencagedata.com/geocode/v1/json?query=" +
+      zipCode +
+      "&pretty=1&key=" +
+      geocodeAPI;
 
-	    return axios.get(queryURL).then((response) => {
-	    	console.log("Axios response" , response.data.results);
-	    	return response.data.results[0].geometry;
+    return axios.get(queryURL).then(response => {
+      console.log("Axios response", response.data.results);
+      return response.data.results[0].geometry;
+    });
+  },
 
-	    });
-	},
+  findVenues: (keyword, lat, lng, radius) => {
+    console.log(keyword, lat, lng, radius);
+    const searchTerms = { keyword: keyword, lat: lat, lng: lng, radius };
+    // console.log(`The url is ${BASE_URL}/api/places`)
+    // console.log(searchTerms)
+    return axios
+      .post(BASE_URL + "/api/places", searchTerms)
+      .then(function(results) {
+        console.log("axios results in findVenues", results.data.results);
+        if (!results.data.results[0]) {
+          return "Sorry no matches found, please try a different keyword or radius.";
+        } else {
+          console.log(results.data.results[0]);
+          return results.data.results;
+        }
+      });
+  },
 
-	findVenues: (keyword, lat, lng, radius) => {
-		console.log(keyword, lat, lng, radius);
-		const searchTerms = {keyword: keyword,lat: lat,lng: lng, radius}
-		// console.log(`The url is ${BASE_URL}/api/places`) 
-		// console.log(searchTerms)
-		return axios.post(BASE_URL + "/api/places", searchTerms)
-	      .then(function(results) {
-	        console.log("axios results in findVenues", results.data.results);
-	        if (!results.data.results[0]) {
-	        	return "Sorry no matches found, please try a different keyword or radius."
-	        } else {
-	        	console.log(results.data.results[0]);
-	        	return results.data.results;
-	        }
-	      });
+  getVenueHours: placeReference => {
+    console.log(placeReference);
 
-	},
+    // const placeID = place.id;
 
-	getVenueHours: (placeReference) => {
-		console.log(placeReference);
-
-		// const placeID = place.id;
-
-		return axios
+    return axios
       .post(BASE_URL + "/api/placeHourInfo", {
         placeReference: placeReference
       })
@@ -59,37 +63,41 @@ const helpers = {
           return results.data.result.opening_hours.weekday_text;
         }
       });
+  },
 
-	},
-
-	// This will save new venues to the database
-	postSaved: function(name, icon, address, reference) {
-		var newVenue = { name: name, icon: icon, address: address, reference: reference };
-		return axios
+  // This will save new venues to the database
+  postSaved: function(name, icon, address, reference) {
+    var newVenue = {
+      name: name,
+      icon: icon,
+      address: address,
+      reference: reference
+    };
+    return axios
       .post(BASE_URL + "/api/saved", newVenue)
       .then(function(response) {
         console.log("axios results", response.data._id);
         return response.data._id;
       });
-	},
+  },
 
-	// This will return any saved articles from the database
-	getSaved: function() {
-		return axios.get(BASE_URL + "/api/saved").then(function(results) {
+  // This will return any saved articles from the database
+  getSaved: function() {
+    return axios.get(BASE_URL + "/api/saved").then(function(results) {
       console.log("axios results", results);
       return results;
     });
-	},
+  },
 
-	// This will remove saved articles from our database
-	deleteSaved: function(reference) {
-		return axios
+  // This will remove saved articles from our database
+  deleteSaved: function(reference) {
+    return axios
       .delete(BASE_URL + "/api/saved", { params: { reference: reference } })
       .then(function(results) {
         console.log("axios results", results);
         return results;
       });
-	}
+  }
 };
 
 // Export the helpers function
