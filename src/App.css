@@ -7,7 +7,8 @@ body {
   background: url("https://wlcatalog.com/wp-content/uploads/2017/03/earth2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
+  color: white;  
+  position: relative;
 }
 
 /* NAVBAR */
@@ -95,7 +96,7 @@ footer {
 
 /* RESULTS */
 
-.results {
+.results, .saved {
   border: 3px solid steelblue;
   border-radius: 10px;
   width: 80%;
@@ -103,4 +104,83 @@ footer {
   margin-top: 10px;
   text-align: center;
   background: rgba(25, 25, 25, 0.5);
+}
+
+/* RESULTS */ 
+
+#result-list {
+  list-style-type: none;   
+  padding-left: 0;
+} 
+
+.result-item {
+  border: 1 px solid salmon;   
+  border-radius: 10px;
+  /* padding: 20 px;  */
+  background: rgba(154, 205, 50, 0.363); 
+  width: 80%; 
+  padding: 20px; 
+  /* margin: 10px; */
+  margin: 5px auto;   
+} 
+
+.view-hours-btn {
+ font-size: 1.3em; 
+ background: steelblue; 
+ padding: 5px; 
+ color: #eaeaea; 
+ border: 1px ridge #eaeaea; 
+ border-radius: 10px;
+
+} 
+
+
+
+.save-btn, .delete-btn {
+ font-size: 1.3em; 
+ background: steelblue; 
+ padding: 5px; 
+ color: #eaeaea; 
+ border: 1px ridge #eaeaea; 
+ border-radius: 10px;
+
+}
+
+/* MODAL */ 
+.container-wrapper {
+  position: relative;
+}
+.hours-modal {
+  position: fixed; 
+  /* height: 600px;  */
+  /* width: 50%;   */
+  height: 100%; 
+  width: 100%;  
+  top: 0; 
+  left: 0;
+  background: rgba(25, 25, 25, 0.9); 
+  padding: 30px;
+} 
+
+/* Hours Table  */ 
+
+#hours-table {
+  list-style-type: none;  
+  text-align: center;  
+  padding: 0; 
+} 
+
+.hour-entry {
+  font-size: 1.2em; 
+  padding: 20px; 
+}
+
+.modal-close-btn {
+ font-size: 1.3em; 
+ background: steelblue; 
+ padding: 5px; 
+ color: #eaeaea; 
+ border: 1px ridge #eaeaea; 
+ border-radius: 10px;
+
 }

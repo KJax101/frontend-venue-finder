@@ -6,9 +6,9 @@ export class Query extends React.Component {
     super(props);
 
     this.state = {
-      keyword: "",
-      zipCode: "",
-      radius: "5"
+      keyword: "pizza",
+      zipCode: "94803",
+      radius: "30"
     };
 
     this.handleChange = this.handleChange.bind(this);
